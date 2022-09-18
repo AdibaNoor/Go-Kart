@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-class FuelPage extends StatefulWidget {
+import 'package:go_kart/bloc.navigation_bloc/navigation_bloc.dart';
+class FuelPage extends StatefulWidget with NavigationStates {
   const FuelPage({Key? key}) : super(key: key);
 
   @override

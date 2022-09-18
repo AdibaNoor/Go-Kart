@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_kart/Widgets/Navigation_Layout.dart';
 import 'Pages/HomePage.dart';
 
 void main() {
@@ -11,8 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-
-      home: MyHomePage(),
+      home: NavigationLayout(),
       debugShowCheckedModeBanner: false,
     );
   }

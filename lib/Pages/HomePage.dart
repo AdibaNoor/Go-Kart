@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:go_kart/Pages/Mileage.dart';
 import 'package:go_kart/Pages/Speedometer.dart';
 import 'package:go_kart/Pages/map_page.dart';
+import 'package:go_kart/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:http/http.dart' as http;
 
+import '../Widgets/NavigationDrawerWidget.dart';
 import 'Fuel.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatefulWidget with NavigationStates {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
@@ -20,19 +22,20 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         backgroundColor: Colors.black38,
         body: SafeArea(
           child: Column(children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0,vertical: 25),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+            child:
+            Row(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children:  const [
                 Text('Dashboard',
                   style:TextStyle(fontSize: 28, color: Colors.white),),
-                Icon(Icons.menu,color: Colors.white,
-                size: 30,),],),),
-            SizedBox(height:10,),
+                ],),),
+            const SizedBox(height:10,),
             //Fuel container, Map
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

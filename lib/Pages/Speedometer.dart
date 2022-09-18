@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-class SpeedometerPage extends StatefulWidget {
+
+import '../bloc.navigation_bloc/navigation_bloc.dart';
+class SpeedometerPage extends StatefulWidget with NavigationStates {
   const SpeedometerPage({Key? key}) : super(key: key);
 
   @override
