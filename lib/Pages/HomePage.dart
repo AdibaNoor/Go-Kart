@@ -54,14 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 15.0),
+                            horizontal: 2, vertical: 1),
                         child: TextButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => const MapPage()));
                             },
                             child: const Text(
-                              'Fuel',
+                              'Map',
                               style:
                                   TextStyle(fontSize: 16, color: Colors.white),
                             )),
