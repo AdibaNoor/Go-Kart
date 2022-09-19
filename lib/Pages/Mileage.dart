@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_kart/bloc.navigation_bloc/navigation_bloc.dart';
-class MileagePage extends StatefulWidget with NavigationStates{
+
+class MileagePage extends StatefulWidget {
   const MileagePage({Key? key}) : super(key: key);
 
   @override
