@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_kart/Pages/Mileage.dart';
 import 'package:go_kart/Pages/Speedometer.dart';
 import 'package:go_kart/Pages/map_page.dart';
+import 'package:go_kart/api_key.dart';
 
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:http/http.dart' as http;
@@ -30,9 +31,15 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  @override
+  void dispose() {
+    _streamController.close();
+    super.dispose();
+  }
+
   Future<void> getSpeed() async {
     var url = Uri.parse(
-        "https://io.adafruit.com/api/v2/skyadav/feeds?X-AIO-Key=aio_IQdV02F8MWOG73wnFjkW0J84I42x");
+        "https://io.adafruit.com/api/v2/skyadav/feeds?X-AIO-Key=${ApiKey.key}");
     final response = await http.get(url);
     final dataBody = json.decode(response.body).first['last_value'];
     _streamController.sink.add(dataBody);
