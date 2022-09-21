@@ -12,12 +12,19 @@ class NavBar extends StatelessWidget {
       child: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal:20,vertical: 30.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30.0),
             child: ListTile(
-              leading: Icon(Icons.home, color: Colors.white,),
-              title: Text('HomePage',style: TextStyle(color: Colors.white, fontSize: 20),),
-              onTap: (){
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
+              leading: const Icon(
+                Icons.home,
+                color: Colors.white,
+              ),
+              title: const Text(
+                'HomePage',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (BuildContext context) => const MyHomePage()));
               },
             ),
           )
