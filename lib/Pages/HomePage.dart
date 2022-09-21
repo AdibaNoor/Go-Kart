@@ -20,116 +20,229 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final StreamController _streamController = StreamController();
+
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(const Duration(seconds: 1), (timer) {
+      getSpeed();
+    });
+  }
+
+  Future<void> getSpeed() async {
+    var url = Uri.parse(
+        "https://io.adafruit.com/api/v2/skyadav/feeds?X-AIO-Key=aio_IQdV02F8MWOG73wnFjkW0J84I42x");
+    final response = await http.get(url);
+    final dataBody = json.decode(response.body).first['last_value'];
+    _streamController.sink.add(dataBody);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavBar(),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Text('Dashboard',style:TextStyle(fontSize: 28, color: Colors.white),),),
+        drawer: const NavBar(),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          title: Text(
+            'Dashboard',
+            style: TextStyle(fontSize: 28, color: Colors.white),
+          ),
+        ),
         backgroundColor: Colors.black38,
         body: SafeArea(
-          child: Column(children: [
-
-            const SizedBox(height:10,),
-            //Fuel container, Map
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-               children: [
-                 Padding(
-                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                   child: GestureDetector(
-                     onTap: (){
-                       Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => FuelPage()));
-                     },
-                     child: Container(
-                       width: 100,
-                       height: 50,
-                       decoration: BoxDecoration(color: Colors.white12,
-                         borderRadius: BorderRadius.circular(12),),
-                       child: Padding(
-                         padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15.0),
-                         child: Text('Fuel',style: TextStyle(fontSize: 16,color: Colors.white),),
-                       ),),
-                   ),),
-             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: GestureDetector(
-                onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => MapPage()));
-                },
-                child: Container(
-                width: 100,
-                  height: 50,
-                decoration: BoxDecoration(color: Colors.white12,
-                  borderRadius: BorderRadius.circular(12),),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15.0),
-                    child: Text('Map',style: TextStyle(fontSize: 16,color: Colors.white),),
-                  ),),
-               ),),],),
-            //speedometer
-            SizedBox(height:10),
-            GestureDetector(
-              onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => SpeedometerPage()));
-              },
-              child: Container(
-                width: 300,
-                height: 400,
-                decoration: BoxDecoration(color: Colors.white12,
-                  borderRadius: BorderRadius.circular(12),),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15.0),
-                  child: Text('Speedometer',style: TextStyle(fontSize: 16,color: Colors.white),),
-                ),),
-            ),
-            //Temp,Gear,Mileage
-            SizedBox(height: 10,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Row(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              //Fuel container, Map
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                  width: 100,
-                  height: 50,
-                  decoration: BoxDecoration(color: Colors.white12,
-                    borderRadius: BorderRadius.circular(12),),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15.0),
-                    child: Text('Temp',style: TextStyle(fontSize: 16,color: Colors.white),),),),
-                  Container(
-                    width: 100,
-                    height: 50,
-                    decoration: BoxDecoration(color: Colors.white12,
-                      borderRadius: BorderRadius.circular(12),),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15.0),
-                      child: Text('Gear',style: TextStyle(fontSize: 16,color: Colors.white),),),
-                  ),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => MileagePage()));
-                    },
-                    child: Container(
-                      width: 100,
-                      height: 50,
-                      decoration: BoxDecoration(color: Colors.white12,
-                        borderRadius: BorderRadius.circular(12),),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15.0),
-                        child: Text('Mileage',style: TextStyle(fontSize: 16,color: Colors.white),),),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => FuelPage()));
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.white12,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20.0, vertical: 15.0),
+                          child: Text(
+                            'Fuel',
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                  ],),
-            ),
-
-            ],),
-        )
-
-    );
-
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => MapPage()));
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.white12,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20.0, vertical: 15.0),
+                          child: Text(
+                            'Map',
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              //speedometer
+              SizedBox(height: 10),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => SpeedometerPage()));
+                },
+                child: Container(
+                  width: 300,
+                  height: 420,
+                  decoration: BoxDecoration(
+                    color: Colors.white12,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0, vertical: 15.0),
+                    child: Column(
+                      children: [
+                        const Text(
+                          'Speedometer',
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                        StreamBuilder(
+                            stream: _streamController.stream,
+                            builder: (context, snapshot) {
+                              switch (snapshot.connectionState) {
+                                case ConnectionState.waiting:
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                default:
+                                  if (snapshot.hasError) {
+                                    return const Text("Wait");
+                                  } else {
+                                    return Column(
+                                      children: [
+                                        SfRadialGauge(
+                                          axes: [
+                                            RadialAxis(
+                                              pointers: [
+                                                NeedlePointer(
+                                                  value: double.parse(
+                                                      snapshot.data.toString()),
+                                                  enableAnimation: true,
+                                                  enableDragging: true,
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                        Text(snapshot.data.toString())
+                                      ],
+                                    );
+                                  }
+                              }
+                            }),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              //Temp,Gear,Mileage
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.white12,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 15.0),
+                        child: Text(
+                          'Temp',
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 100,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.white12,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 15.0),
+                        child: Text(
+                          'Gear',
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => MileagePage()));
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.white12,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20.0, vertical: 15.0),
+                          child: Text(
+                            'Mileage',
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }
 // TextInputWidget(),
