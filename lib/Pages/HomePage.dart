@@ -159,8 +159,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                         SfRadialGauge(
                                           axes: [
                                             RadialAxis(
+                                              minimum: 0,
+                                              maximum: 150,
+                                              interval: 10,
+                                              ranges: [
+                                                GaugeRange(startValue: 0, endValue: 50, color: Colors.white,),
+                                                GaugeRange(startValue: 50, endValue: 100, color: Colors.white,),
+                                                GaugeRange(startValue: 100, endValue: 150, color: Colors.white,),
+                                              ],
+                                              useRangeColorForAxis: true,
                                               pointers: [
                                                 NeedlePointer(
+                                                  needleColor: Colors.white,
                                                   value: double.parse(
                                                       snapshot.data.toString()),
                                                   enableAnimation: true,
@@ -170,7 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             )
                                           ],
                                         ),
-                                        Text(snapshot.data.toString())
+                                        Text(snapshot.data.toString(),style: TextStyle(color: Colors.white, fontSize: 16),)
                                       ],
                                     );
                                   }
@@ -185,6 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 height: 10,
               ),
+              //Temp,Gear,Mileage
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Row(
@@ -206,27 +217,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
-                    Container(
-                      width: 100,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.white12,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 15.0),
-                        child: Text(
-                          'Gear',
-                          style: TextStyle(fontSize: 16, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) => MileagePage()));
-                      },
+                    SafeArea(
                       child: Container(
                         width: 100,
                         height: 50,
@@ -238,8 +229,32 @@ class _MyHomePageState extends State<MyHomePage> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 20.0, vertical: 15.0),
                           child: Text(
-                            'Mileage',
+                            'Gear',
                             style: TextStyle(fontSize: 16, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => MileagePage()));
+                      },
+                      child: SafeArea(
+                        child: Container(
+                          width: 100,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.white12,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20.0, vertical: 15.0),
+                            child: Text(
+                              'Mileage',
+                              style: TextStyle(fontSize: 16, color: Colors.white),
+                            ),
                           ),
                         ),
                       ),

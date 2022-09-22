@@ -33,6 +33,7 @@ class MapPageState extends State<MapPage> {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.black,
         onPressed: _goToHome,
         label: const Text('To Anjora!'),
         icon: const Icon(Icons.directions_boat),
