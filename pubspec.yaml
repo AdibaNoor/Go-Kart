@@ -40,6 +40,7 @@ dependencies:
   rxdart: ^0.27.5
   flutter_bloc: ^8.1.1
   flutter_dotenv: ^5.0.2
+  flutter_local_notifications: ^11.0.1
 
 dev_dependencies:
   flutter_test:
