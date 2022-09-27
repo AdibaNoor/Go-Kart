@@ -4,6 +4,12 @@
         android:label="go_kart"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+       <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+           <intent-filter>
+               <action android:name="android.intent.action.BOOT_COMPLETED" />
+           </intent-filter>
+       </receiver>
+       <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -34,4 +40,7 @@
        <meta-data android:name="com.google.android.geo.API_KEY"
            android:value="AIzaSyCIjd-V5yNAZN42FBGB1BGpmUXjhOLwYec"/>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 </manifest>
