@@ -5,12 +5,14 @@ import 'package:go_kart/Pages/Mileage.dart';
 import 'package:go_kart/Pages/Speedometer.dart';
 import 'package:go_kart/Pages/map_page.dart';
 import 'package:go_kart/api_key.dart';
+import 'package:provider/provider.dart';
 
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:http/http.dart' as http;
 
 import '../Widgets/NavBar.dart';
 
+import '../notification.dart';
 import 'Fuel.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -26,6 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    Provider.of<NotificationService>(context, listen: false).initialize();
     Timer.periodic(const Duration(seconds: 1), (timer) {
       getSpeed();
     });
@@ -47,6 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    NotificationService ns = NotificationService();
+    ns.instantNofitication();
     return Scaffold(
         drawer: const NavBar(),
         appBar: AppBar(
@@ -163,9 +168,21 @@ class _MyHomePageState extends State<MyHomePage> {
                                               maximum: 150,
                                               interval: 10,
                                               ranges: [
-                                                GaugeRange(startValue: 0, endValue: 50, color: Colors.white,),
-                                                GaugeRange(startValue: 50, endValue: 100, color: Colors.white,),
-                                                GaugeRange(startValue: 100, endValue: 150, color: Colors.white,),
+                                                GaugeRange(
+                                                  startValue: 0,
+                                                  endValue: 50,
+                                                  color: Colors.white,
+                                                ),
+                                                GaugeRange(
+                                                  startValue: 50,
+                                                  endValue: 100,
+                                                  color: Colors.white,
+                                                ),
+                                                GaugeRange(
+                                                  startValue: 100,
+                                                  endValue: 150,
+                                                  color: Colors.white,
+                                                ),
                                               ],
                                               useRangeColorForAxis: true,
                                               pointers: [
@@ -180,7 +197,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                             )
                                           ],
                                         ),
-                                        Text(snapshot.data.toString(),style: TextStyle(color: Colors.white, fontSize: 16),)
+                                        Text(
+                                          snapshot.data.toString(),
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16),
+                                        )
                                       ],
                                     );
                                   }
@@ -253,7 +275,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 horizontal: 20.0, vertical: 15.0),
                             child: Text(
                               'Mileage',
-                              style: TextStyle(fontSize: 16, color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.white),
                             ),
                           ),
                         ),
