@@ -133,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 child: Container(
                   width: 300,
-                  height: 420,
+                  height: 450,
                   decoration: BoxDecoration(
                     color: Colors.white12,
                     borderRadius: BorderRadius.circular(12),
@@ -201,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           snapshot.data.toString(),
                                           style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 16),
+                                              fontSize: 20),
                                         )
                                       ],
                                     );
@@ -239,24 +239,24 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
-                    SafeArea(
-                      child: Container(
-                        width: 100,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.white12,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 15.0),
-                          child: Text(
-                            'Gear',
-                            style: TextStyle(fontSize: 16, color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
+                    // SafeArea(
+                    //   child: Container(
+                    //     width: 100,
+                    //     height: 50,
+                    //     decoration: BoxDecoration(
+                    //       color: Colors.white12,
+                    //       borderRadius: BorderRadius.circular(12),
+                    //     ),
+                    //     child: Padding(
+                    //       padding: const EdgeInsets.symmetric(
+                    //           horizontal: 20.0, vertical: 15.0),
+                    //       child: Text(
+                    //         'Gear',
+                    //         style: TextStyle(fontSize: 16, color: Colors.white),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
