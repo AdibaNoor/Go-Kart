@@ -72,7 +72,7 @@ class _SpeedometerPageState extends State<SpeedometerPage> {
                     primaryXAxis: NumericAxis(
                         autoScrollingMode: AutoScrollingMode.end,
                         autoScrollingDelta: 10,
-                        labelFormat: '{value}M',
+                        labelFormat: '{value}',
                         numberFormat:
                             NumberFormat.simpleCurrency(decimalDigits: 0))))));
   }
