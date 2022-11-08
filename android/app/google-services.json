@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "761509260897",
+    "firebase_url": "https://rfid-door-lock-dc802-default-rtdb.firebaseio.com",
+    "project_id": "rfid-door-lock-dc802",
+    "storage_bucket": "rfid-door-lock-dc802.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761509260897:android:dba48616ca359692f48420",
+        "android_client_info": {
+          "package_name": "com.example.go_kart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761509260897-5q6jf4pqr3vkf741rfpco1j018f35vb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfkai34zEt2rfh5H0hHO_caZsACzwi-AU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "761509260897-5q6jf4pqr3vkf741rfpco1j018f35vb9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "761509260897-ouldg44k76nqv33nhuad82ghu4n2r5vq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.rfidApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761509260897:android:d5899cb97e73af88f48420",
+        "android_client_info": {
+          "package_name": "com.example.rfid_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761509260897-5q6jf4pqr3vkf741rfpco1j018f35vb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfkai34zEt2rfh5H0hHO_caZsACzwi-AU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "761509260897-5q6jf4pqr3vkf741rfpco1j018f35vb9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "761509260897-ouldg44k76nqv33nhuad82ghu4n2r5vq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.rfidApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
