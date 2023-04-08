@@ -44,39 +44,53 @@ class _FuelPageState extends State<FuelPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            body: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: SfCartesianChart(
-                  onChartTouchInteractionMove:
-                      (ChartTouchInteractionArgs args) {
-                    isPointerMoved = true;
-                  },
-                  onChartTouchInteractionUp: (ChartTouchInteractionArgs args) {
-                    isPointerMoved = false;
-                  },
-                  zoomPanBehavior: zoomPanBehavior,
-                  title: ChartTitle(text: 'Speed of Vehical'),
-                  legend: Legend(isVisible: true),
-                  tooltipBehavior: _tooltipBehavior,
-                  enableAxisAnimation: true,
-                  series: <ChartSeries>[
-                    LineSeries<Temp, int>(
-                        onRendererCreated: (ChartSeriesController controller) {
-                          chartSeriesController = controller;
-                        },
-                        name: 'speed',
-                        dataSource: tempData,
-                        xValueMapper: (Temp t, _) => t.a,
-                        yValueMapper: (Temp t, _) => t.b,
-                        dataLabelSettings:
-                            const DataLabelSettings(isVisible: true),
-                        enableTooltip: true)
-                  ],
-                  primaryYAxis:
-                      NumericAxis(edgeLabelPlacement: EdgeLabelPlacement.shift),
-                  primaryXAxis:
-                      NumericAxis(edgeLabelPlacement: EdgeLabelPlacement.shift),
-                ))));
+            body: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xff09023f),
+                    Color(0xff5a5398),
+                    Color(0xffe7e6ee),
+                  ]
+                )
+              ),
+              child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: SfCartesianChart(
+                    onChartTouchInteractionMove:
+                        (ChartTouchInteractionArgs args) {
+                      isPointerMoved = true;
+                    },
+                    onChartTouchInteractionUp: (ChartTouchInteractionArgs args) {
+                      isPointerMoved = false;
+                    },
+                    zoomPanBehavior: zoomPanBehavior,
+                    title: ChartTitle(text: 'Fuel',textStyle: TextStyle(color: Colors.white,fontSize: 20)),
+                    legend: Legend(isVisible: true),
+                    tooltipBehavior: _tooltipBehavior,
+                    enableAxisAnimation: true,
+                    series: <ChartSeries>[
+                      LineSeries<Temp, int>(
+                          onRendererCreated: (ChartSeriesController controller) {
+                            chartSeriesController = controller;
+                          },
+                          color: Colors.white,
+                          name: 'Fuel',
+                          dataSource: tempData,
+                          xValueMapper: (Temp t, _) => t.a,
+                          yValueMapper: (Temp t, _) => t.b,
+                          dataLabelSettings:
+                              const DataLabelSettings(isVisible: true),
+                          enableTooltip: true)
+                    ],
+                    primaryYAxis:
+                        NumericAxis(edgeLabelPlacement: EdgeLabelPlacement.shift),
+                    primaryXAxis:
+                        NumericAxis(edgeLabelPlacement: EdgeLabelPlacement.shift),
+                  )),
+            )));
   }
 
   double date = 2018;

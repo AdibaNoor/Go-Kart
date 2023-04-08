@@ -46,51 +46,65 @@ class _SpeedometerPageState extends State<SpeedometerPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            body: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Consumer<VehicleData>(
-                  builder: (_, data, __) {
-                    if (vehicleList.isEmpty) {
-                      return CircularProgressIndicator();
-                    }
-                    return SfCartesianChart(
-                        onChartTouchInteractionMove:
-                            (ChartTouchInteractionArgs args) {
-                          isPointerMoved = true;
-                        },
-                        onChartTouchInteractionUp:
-                            (ChartTouchInteractionArgs args) {
-                          isPointerMoved = false;
-                        },
-                        zoomPanBehavior: zoomPanBehavior,
-                        title: ChartTitle(text: 'Speed of Vehical'),
-                        legend: Legend(isVisible: true),
-                        tooltipBehavior: _tooltipBehavior,
-                        enableAxisAnimation: true,
-                        series: <ChartSeries>[
-                          LineSeries<Vehicle, DateTime>(
-                              onRendererCreated:
-                                  (ChartSeriesController controller) {
-                                chartSeriesController = controller;
-                              },
-                              name: 'speed',
-                              dataSource: data.vehicleList,
-                              xValueMapper: (Vehicle sales, _) =>
-                                  sales.dateTime,
-                              yValueMapper: (Vehicle sales, _) =>
-                                  double.parse(sales.speed),
-                              dataLabelSettings:
-                                  const DataLabelSettings(isVisible: true),
-                              enableTooltip: true)
-                        ],
-                        primaryYAxis: NumericAxis(
-                            edgeLabelPlacement: EdgeLabelPlacement.shift),
-                        primaryXAxis: DateTimeAxis(
-                            autoScrollingMode: AutoScrollingMode.end,
-                            autoScrollingDelta: 10,
-                            labelFormat: '{value}'));
-                  },
-                ))));
+            body: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xff09023f),
+                    Color(0xff5a5398),
+                    Color(0xffe7e6ee),
+                  ]
+                )
+              ),
+              child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Consumer<VehicleData>(
+                    builder: (_, data, __) {
+                      if (vehicleList.isEmpty) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      return SfCartesianChart(
+                          onChartTouchInteractionMove:
+                              (ChartTouchInteractionArgs args) {
+                            isPointerMoved = true;
+                          },
+                          onChartTouchInteractionUp:
+                              (ChartTouchInteractionArgs args) {
+                            isPointerMoved = false;
+                          },
+                          zoomPanBehavior: zoomPanBehavior,
+                          title: ChartTitle(text: 'Speed of Vehical',textStyle: TextStyle(color: Colors.white,fontSize: 20)),
+                          legend: Legend(isVisible: true),
+                          tooltipBehavior: _tooltipBehavior,
+                          enableAxisAnimation: true,
+                          series: <ChartSeries>[
+                            LineSeries<Vehicle, DateTime>(
+                                onRendererCreated:
+                                    (ChartSeriesController controller) {
+                                  chartSeriesController = controller;
+                                },
+                                color: Colors.white,
+                                name: 'Speed',
+                                dataSource: data.vehicleList,
+                                xValueMapper: (Vehicle sales, _) =>
+                                    sales.dateTime,
+                                yValueMapper: (Vehicle sales, _) =>
+                                    double.parse(sales.speed),
+                                dataLabelSettings:
+                                    const DataLabelSettings(isVisible: true),
+                                enableTooltip: true)
+                          ],
+                          primaryYAxis: NumericAxis(
+                              edgeLabelPlacement: EdgeLabelPlacement.shift),
+                          primaryXAxis: DateTimeAxis(
+                              autoScrollingMode: AutoScrollingMode.end,
+                              autoScrollingDelta: 10,
+                              labelFormat: '{value}'));
+                    },
+                  )),
+            )));
   }
 }
 

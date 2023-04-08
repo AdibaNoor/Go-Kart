@@ -13,6 +13,17 @@ class _MileagePageState extends State<MileagePage> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xff09023f),
+              Color(0xff5a5398),
+              Color(0xffe7e6ee),
+            ]
+          )
+        ),
         child: Column(
           children: [
             Padding(
