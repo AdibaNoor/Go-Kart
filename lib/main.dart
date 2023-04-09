@@ -13,11 +13,7 @@ const notif1 = "notif1";
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  Workmanager().initialize(
-      callbackDispatcher, // The top level function, aka callbackDispatcher
-      isInDebugMode:
-          true // If enabled it will post a notification whenever the task is running. Handy for debugging tasks
-      );
+  initialiseWorkManager();
 
   Workmanager().registerPeriodicTask(
     "2",
@@ -27,6 +23,14 @@ Future<void> main() async {
   Workmanager().registerPeriodicTask("5", notif1,
       frequency: Duration(minutes: 15), initialDelay: Duration(minutes: 1));
   runApp(const MyApp());
+}
+
+void initialiseWorkManager() {
+  Workmanager().initialize(
+      callbackDispatcher, // The top level function, aka callbackDispatcher
+      isInDebugMode:
+          true // If enabled it will post a notification whenever the task is running. Handy for debugging tasks
+      );
 }
 
 void callbackDispatcher() {
